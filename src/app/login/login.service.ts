@@ -38,7 +38,7 @@ export class LoginService {
     this.get(this.getId()).subscribe({
       next: (data) => {
         this.user = data;
-        console.log(data);
+        console.log(this.user);
       },
       error: (e) => console.error(e)
     })

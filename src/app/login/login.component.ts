@@ -42,7 +42,7 @@ export class LoginComponent {
           this.error = 'Invalid email or password';
         }
       );
-      window.sessionStorage.setItem('sender', String(this.loginService.getUser()?.name))
+      //window.sessionStorage.setItem('sender', String(this.loginService.getUser()?.name))
     }
   }
 }
