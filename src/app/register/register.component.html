@@ -1,1 +1,65 @@
-<p>register works!</p>
+<mat-card class="register-card">
+  <mat-card-header>
+    <mat-card-title>Register</mat-card-title>
+  </mat-card-header>
+
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+    <mat-card-content>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" formControlName="name">
+        <mat-error *ngIf="registerForm.get('name')?.hasError('required')">
+          Name is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email">
+        <mat-error *ngIf="registerForm.get('email')?.hasError('required')">
+          Email is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password">
+        <mat-error *ngIf="registerForm.get('password')?.hasError('required')">
+          Password is required
+        </mat-error>
+      </mat-form-field>
+
+      <div *ngIf="errorMessage" class="error-message">
+        <mat-error>
+          {{ errorMessage }}
+        </mat-error>
+      </div>
+
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <a mat-button href="/login">Already a member? Login here!  </a> <button mat-raised-button color="primary" [disabled]="!registerForm.valid">Register</button>
+    </mat-card-actions>
+
+  </form>
+</mat-card>
+
+<!-- Estilos no componente -->
+<style>
+  .register-card {
+    max-width: 400px;
+    margin: 2em auto;
+    padding: 2em;
+  }
+
+  .full-width {
+    width: 100%;
+  }
+
+  .error-message {
+    color: red;
+    margin: 1em 0;
+  }
+</style>

@@ -1,1 +1,57 @@
-<p>login works!</p>
+<mat-card class="login-card">
+  <mat-card-header>
+    <mat-card-title>Login</mat-card-title>
+  </mat-card-header>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+    <mat-card-content>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email">
+        <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
+          Email é obrigatório.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Senha</mat-label>
+        <input matInput type="password" formControlName="password">
+        <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+          Senha é obrigatória.
+        </mat-error>
+      </mat-form-field>
+
+      <div *ngIf="error" class="error-message">
+        <mat-error>
+          {{ error }}
+        </mat-error>
+      </div>
+
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <a mat-button href="/register">Don't have an account? Register here!  </a> <button mat-raised-button color="primary" [disabled]="!loginForm.valid">Entrar</button>
+    </mat-card-actions>
+  </form>
+
+</mat-card>
+
+<!-- Estilos no componente -->
+<style>
+  .login-card {
+    max-width: 400px;
+    margin: 2em auto;
+    padding: 2em;
+  }
+
+  .full-width {
+    width: 100%;
+  }
+
+  .error-message {
+    color: red;
+    margin: 1em 0;
+  }
+</style>

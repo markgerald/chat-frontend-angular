@@ -1,1 +1,20 @@
-<p>chat works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Chat Room <a href="/logout">Logout</a> </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content class="chat-window">
+    <div *ngFor="let message of messages" class="chat-message">
+      <mat-chip-listbox>
+        <mat-chip-option>{{ message.sender }}: {{message.content}}</mat-chip-option>
+      </mat-chip-listbox>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions class="chat-actions">
+    <mat-form-field class="message-input">
+      <input matInput placeholder="Type your message..." [(ngModel)]="currentMessage">
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="sendMessage()">Send</button>
+  </mat-card-actions>
+</mat-card>
